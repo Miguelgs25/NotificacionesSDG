@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificacionesNegocio", "NotificacionesNegocio\NotificacionesNegocio.csproj", "{C6831E05-7468-4EA1-B7D2-88EF633A0DB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificacionesNegocio", "NotificacionesNegocio\NotificacionesNegocio.csproj", "{C6831E05-7468-4EA1-B7D2-88EF633A0DB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificacionesServicio", "NotificacionesServicio\NotificacionesServicio.csproj", "{B5972302-252B-47F1-BE3F-3A5B4359693B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificacionesServicio", "NotificacionesServicio\NotificacionesServicio.csproj", "{B5972302-252B-47F1-BE3F-3A5B4359693B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LectorPrueba1", "LectorPrueba\LectorPrueba1.csproj", "{CF060638-A6B9-4CCE-862D-0C9FE27618BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LectorPrueba2", "LectorPrueba2\LectorPrueba2.csproj", "{39E07082-7F2A-41E3-8895-FD03C3922B42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{B5972302-252B-47F1-BE3F-3A5B4359693B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5972302-252B-47F1-BE3F-3A5B4359693B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5972302-252B-47F1-BE3F-3A5B4359693B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF060638-A6B9-4CCE-862D-0C9FE27618BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF060638-A6B9-4CCE-862D-0C9FE27618BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF060638-A6B9-4CCE-862D-0C9FE27618BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF060638-A6B9-4CCE-862D-0C9FE27618BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E07082-7F2A-41E3-8895-FD03C3922B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E07082-7F2A-41E3-8895-FD03C3922B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E07082-7F2A-41E3-8895-FD03C3922B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E07082-7F2A-41E3-8895-FD03C3922B42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
