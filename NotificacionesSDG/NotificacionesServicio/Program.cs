@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using NotificacionesDatos;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<DbContexto>(opt => opt.UseInMemoryDatabase("BdNotificaciones"));
 
 var app = builder.Build();
 
