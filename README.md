@@ -22,13 +22,18 @@ lectores.
 
 ## Instalación
 NotificacionesSDG requiere instalar RabbitMQ 3.9.11, Erlang y .NET 6.0
+
 https://www.rabbitmq.com/download.html
+
 https://www.erlang.org/downloads
+
 https://dotnet.microsoft.com/download/dotnet/6.0
+
 Además de restaurar los nugets antes de lanzar la aplicación.
 
 ## Ejecución
 El servicio de RabbitMQ debe estar levantado. Por defecto en el puerto 5672.
+
 Inicie los siguientes proyectos de la solución. Click derecho -> Propiedades -> Proyectos de inicio multiples, si está trabajando con Visual Studio.
 - **LectorPrueba1**: Aplicación de consola para representar a un lector.
 - **LectorPrueba2**: Aplicación de consola para representar a un segundo lector.
