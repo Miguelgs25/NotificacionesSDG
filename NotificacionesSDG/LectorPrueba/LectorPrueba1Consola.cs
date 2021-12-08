@@ -19,8 +19,8 @@ using(IModel canal = conexion.CreateModel())
 
     do
     {
-        Console.WriteLine("[*] Lector 1. ¿Desea suscribirse? [y,n] y presione enter:");
-        Console.WriteLine("[*] Ó [s] y presione enter, para salir:");
+        Console.WriteLine("[*] Lector 1. ¿Desea suscribirse? [y,n] y presione enter en cualquier momento:");
+        Console.WriteLine("[*] Ó [s] y presione enter en cualquier momento, para salir:");
         valorLeido = Console.ReadLine();
 
         if(valorLeido == "y")
@@ -49,9 +49,10 @@ using(IModel canal = conexion.CreateModel())
             // Se desuscribe a la cola de rabbiMQ
             do
             {
-                Console.WriteLine("[*] Lector 1. ¿Desea desuscribirse? [y,n] y presione enter:");
-                Console.WriteLine("[*] Ó [s] y presione enter, para salir:");
+                Console.WriteLine("[*] Lector 1. ¿Desea desuscribirse? [y,n] y presione enter en cualquier momento:");
+                Console.WriteLine("[*] Ó [s] y presione enter en cualquier momento, para salir:");
                 valorLeido = Console.ReadLine();
+
                 if(valorLeido == "y")
                 {
                     canal.BasicCancel(lectorConsumidor.ConsumerTags.First());
