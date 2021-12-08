@@ -12,8 +12,8 @@ using(IModel canal = conexion.CreateModel())
     string valorLeido;
     Lector lector = new Lector { Nombre = "Lector 1" };
     StringContent data = new StringContent(JsonConvert.SerializeObject(lector), Encoding.UTF8, "application/json");
-    string urlSus = "https://localhost:7150/Publicador/suscribirse";
-    string urlDesus = "https://localhost:7150/Publicador/desuscribirse";
+    string urlSus = "https://localhost:7150/Lector/suscribirse";
+    string urlDesus = "https://localhost:7150/Lector/desuscribirse";
     HttpClient? client = new HttpClient();
     HttpResponseMessage? response;
 

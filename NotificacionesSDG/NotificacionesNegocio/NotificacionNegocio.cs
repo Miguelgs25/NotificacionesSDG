@@ -34,12 +34,22 @@ namespace NotificacionesNegocio
         #region Métodos
         public void EnviarMensaje(string mensaje)
         {
-            byte[] body = Encoding.UTF8.GetBytes(mensaje);
-            canal.BasicPublish(EXCHANGE, String.Empty, null, body);
+            try
+            {
+                _logger.LogInformation("El Publicador está enviando el mensaje: '{mensaje}'.", mensaje);
+                byte[] body = Encoding.UTF8.GetBytes(mensaje);
+                canal.BasicPublish(EXCHANGE, String.Empty, null, body);
+            }
+            catch(Exception e)
+            {
+                _logger.LogError("Ha ocurrido un error durante el envío del mensaje: '{mensaje}'.", mensaje);
+                throw new Exception("Ha ocurrido un error durante el envío del mensaje.", e);
+            }
         }
 
         public async Task<List<Lector>> ObtenerLectoresSuscritos()
         {
+            _logger.LogInformation("Publicador está obteniendo los lectores suscritos.");
             return await _contexto.Lectores.ToListAsync();
         }
 
@@ -47,29 +57,47 @@ namespace NotificacionesNegocio
         {
             bool res = true;
 
-            if(string.IsNullOrEmpty(lector.Nombre))
+            try
             {
-                res = false;
-            }
+                if(string.IsNullOrEmpty(lector.Nombre))
+                {
+                    _logger.LogWarning("El nombre del lector no puede ser vacío o nulo.");
+                    res = false;
+                }
+                else
+                {
+                    Lector? lectorExistente = await _contexto.Lectores
+                        .Where(l => l.Nombre == lector.Nombre)
+                        .FirstOrDefaultAsync();
 
-            Lector? lectorExistente = await _contexto.Lectores
-                .Where(l => l.Nombre == lector.Nombre)
-                .FirstOrDefaultAsync();
-
-            if(suscribirse && lectorExistente != null
-                || !suscribirse && lectorExistente == null)
-            {
-                res = false;
+                    if(suscribirse && lectorExistente != null)
+                    {
+                        _logger.LogWarning("El lector no puede suscribirse porque ya existe otro con el mismo nombre.");
+                        res = false;
+                    }
+                    else if(!suscribirse && lectorExistente == null)
+                    {
+                        _logger.LogWarning("El lector no puede desuscribirse porque no está suscrito.");
+                        res = false;
+                    }
+                    else if(suscribirse && lectorExistente == null)
+                    {
+                        _logger.LogInformation("Lector {lector.Nombre} se ha suscrito.", lector.Nombre);
+                        _contexto.Lectores.Add(lector);
+                    }
+                    else if(!suscribirse && lectorExistente != null)
+                    {
+                        _logger.LogInformation("Lector {lectorExistente.Nombre} se ha desuscrito.", lectorExistente.Nombre);
+                        _contexto.Lectores.Remove(lectorExistente);
+                    }
+                    _contexto.SaveChanges();
+                }
             }
-            else if(suscribirse && lectorExistente == null)
+            catch(Exception e)
             {
-                _contexto.Lectores.Add(lector);
+                _logger.LogError("Ha ocurrido un error durante la operacion de suscripción-desuscripción.");
+                throw new Exception("Ha ocurrido un error durante la operacion de suscripción-desuscripción.", e);
             }
-            else if(!suscribirse && lectorExistente != null)
-            {
-                _contexto.Lectores.Remove(lectorExistente);
-            }
-            _contexto.SaveChanges();
 
             return res;
         }
