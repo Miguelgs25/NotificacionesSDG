@@ -17,8 +17,8 @@ namespace NotificacionesTest
     public class Tests
     {
         private INotificacionNegocio _notificacionesNegocio;
-        ILogger<NotificacionNegocio> logger;
-        DbContexto contexto;
+        private ILogger<NotificacionNegocio> logger;
+        private DbContexto contexto;
 
         [SetUp]
         public void Setup()
@@ -32,12 +32,13 @@ namespace NotificacionesTest
             logger = factory.CreateLogger<NotificacionNegocio>();
 
             DbContextOptions<DbContexto> options = new DbContextOptionsBuilder<DbContexto>()
-            .UseInMemoryDatabase(databaseName: "DBTests")
-            .Options;
+                .UseInMemoryDatabase(databaseName: "DBTests")
+                .Options;
             contexto = new DbContexto(options);
-            _notificacionesNegocio = new NotificacionNegocio(logger, contexto);
 
+            _notificacionesNegocio = new NotificacionNegocio(logger, contexto);
         }
+
         [TearDown]
         public void TearDown()
         {
@@ -117,7 +118,7 @@ namespace NotificacionesTest
         [Test]
         public async Task EnviarMensaje()
         {
-            // RabbitMQ tiene que estar funcionando para que el test sea valido
+            // RabbitMQ tiene que estar funcionando para que el test sea válido
             string mensajeEnviado = "mensajeTest";
             string mensajeRecibido = string.Empty;
             ConnectionFactory factoria = new ConnectionFactory() { HostName = "localhost" };
